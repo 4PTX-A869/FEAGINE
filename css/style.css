@@ -924,8 +924,8 @@ body {
 }
 
 .marker-pulse {
-    width: 16px;
-    height: 16px;
+    width: 8px;
+    height: 8px;
     background: var(--primary-blue);
     border-radius: 50%;
     position: relative;
@@ -935,10 +935,10 @@ body {
 .marker-pulse::before {
     content: '';
     position: absolute;
-    top: -4px;
-    left: -4px;
-    width: 24px;
-    height: 24px;
+    top: -2px;
+    left: -2px;
+    width: 12px;
+    height: 12px;
     background: var(--primary-blue);
     border-radius: 50%;
     opacity: 0.3;
