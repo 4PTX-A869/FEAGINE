@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://4ptx-a869.github.io/FEAGINE/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Disallow sensitive areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /*?*
+
+# Allow important resources
+Allow: /css/
+Allow: /js/
+Allow: /img/
+Allow: /assets/
