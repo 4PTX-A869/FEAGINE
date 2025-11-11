@@ -28,12 +28,7 @@
     <priority>0.8</priority>
   </url>
   
-  <url>
-    <loc>https://4ptx-a869.github.io/FEAGINE/#products</loc>
-    <lastmod>2024-12-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+  <!-- Products section removed -->
   
   <url>
     <loc>https://4ptx-a869.github.io/FEAGINE/#videos</loc>
@@ -56,12 +51,7 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://4ptx-a869.github.io/FEAGINE/#news</loc>
-    <lastmod>2024-12-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <!-- Removed invalid empty URL entry -->
   
   <url>
     <loc>https://4ptx-a869.github.io/FEAGINE/#contact</loc>

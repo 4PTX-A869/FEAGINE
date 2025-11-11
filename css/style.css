@@ -421,22 +421,60 @@ body {
     background: var(--light-grey);
 }
 
-.about .section-title {
-    background: rgba(0, 0, 0, 0.4);
-    color: var(--pure-white);
-    padding: 30px 40px;
-    border-radius: 16px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    margin: 0 auto 3rem;
-    display: block;
-    width: fit-content;
+/* 仅将“有何可为”区域下移一些 */
+#what-can-do.about {
+    padding-top: 280px;
+}
+
+/* 提升三个关键标题（有何可为/为何有为/何以为之）的文字可读性光效 */
+.section-title.glow-title {
+    color: var(--carbon-grey);
+    text-shadow:
+        0 2px 6px rgba(255, 255, 255, 0.6),
+        0 0 12px rgba(11, 97, 255, 0.35),
+        0 0 24px rgba(11, 97, 255, 0.25);
     position: relative;
 }
 
-.about .section-title::after {
-    background: linear-gradient(90deg, var(--pure-white), rgba(255, 255, 255, 0.6));
+.section-title.glow-title::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -20px;
+    width: 220px;
+    height: 80px;
+    background: radial-gradient(ellipse at center,
+        rgba(11, 97, 255, 0.18) 0%,
+        rgba(11, 97, 255, 0.08) 50%,
+        rgba(11, 97, 255, 0) 70%);
+    filter: blur(12px);
+    pointer-events: none;
 }
+
+.section-title.glow-title::after {
+    /* 保留原有下划线，但加一点亮度 */
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--medium-grey));
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(11, 97, 255, 0.35);
+}
+
+/* 在深色/视频背景叠加时进一步增强可读性 */
+.glow-contrast {
+    text-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.65),
+        0 0 14px rgba(11, 97, 255, 0.45),
+        0 0 28px rgba(11, 97, 255, 0.35);
+}
+
+/* Removed custom About section title styling to match Top Partners */
 
 .about-grid {
     display: grid;
@@ -512,111 +550,11 @@ body {
     margin-bottom: 0;
 }
 
-/* Products Section */
-.products {
-    padding: var(--section-padding);
-}
+/* Products Section: removed */
 
-.products-swiper {
-    margin-top: 2rem;
-    padding-bottom: 50px;
-}
+/* Product card styles: removed */
 
-.product-card {
-    background: var(--pure-white);
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-    transition: var(--transition-smooth);
-    height: auto;
-}
-
-.product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-}
-
-.product-image {
-    height: 250px;
-    overflow: hidden;
-    background: var(--light-grey);
-}
-
-.product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--transition-smooth);
-}
-
-.product-card:hover .product-image img {
-    transform: scale(1.1);
-}
-
-.product-content {
-    padding: 30px;
-}
-
-.product-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--carbon-grey);
-    margin-bottom: 8px;
-}
-
-.product-subtitle {
-    color: var(--primary-blue);
-    font-weight: 500;
-    margin-bottom: 20px;
-}
-
-.product-specs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-bottom: 20px;
-    padding: 20px;
-    background: var(--light-grey);
-    border-radius: 8px;
-}
-
-.spec-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.spec-label {
-    font-weight: 500;
-    color: var(--text-grey);
-    font-size: 0.9rem;
-}
-
-.spec-value {
-    font-weight: 600;
-    color: var(--carbon-grey);
-}
-
-.product-description {
-    color: var(--text-grey);
-    line-height: 1.6;
-}
-
-/* Swiper Customization */
-.swiper-pagination-bullet {
-    background: var(--medium-grey);
-    opacity: 0.5;
-}
-
-.swiper-pagination-bullet-active {
-    background: var(--primary-blue);
-    opacity: 1;
-}
-
-.swiper-button-next,
-.swiper-button-prev {
-    color: var(--primary-blue);
-}
+/* Swiper customization: removed */
 
 /* Videos Section */
 .videos {
@@ -801,86 +739,6 @@ body {
     margin: 0 auto;
 }
 
-/* News Timeline Section */
-.news {
-    padding: var(--section-padding);
-}
-
-.timeline {
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.timeline::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: var(--primary-blue);
-    transform: translateX(-50%);
-}
-
-.timeline-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 60px;
-    position: relative;
-}
-
-.timeline-item:nth-child(odd) {
-    flex-direction: row-reverse;
-}
-
-.timeline-item:nth-child(odd) .timeline-content {
-    text-align: right;
-    margin-right: 40px;
-}
-
-.timeline-item:nth-child(even) .timeline-content {
-    margin-left: 40px;
-}
-
-.timeline-date {
-    background: var(--primary-blue);
-    color: var(--pure-white);
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-}
-
-.timeline-content {
-    flex: 1;
-    background: var(--pure-white);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    transition: var(--transition-smooth);
-}
-
-.timeline-content:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-}
-
-.timeline-content h3 {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--carbon-grey);
-    margin-bottom: 10px;
-}
-
-.timeline-content p {
-    color: var(--text-grey);
-    line-height: 1.6;
-}
 
 /* Contact Section */
 .contact {
@@ -924,8 +782,8 @@ body {
 }
 
 .marker-pulse {
-    width: 6px;
-    height: 6px;
+    width: 3px;
+    height: 3px;
     background: var(--primary-blue);
     border-radius: 50%;
     position: relative;
@@ -937,8 +795,8 @@ body {
     position: absolute;
     top: -1px;
     left: -1px;
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     background: var(--primary-blue);
     border-radius: 50%;
     opacity: 0.25;
@@ -961,13 +819,13 @@ body {
 }
 
 .shenzhen-marker {
-    top: 45%;
-    left: 75%;
+    top: 51.1%;
+    left: 79.6%;
 }
 
 .hongkong-marker {
-    top: 50%;
-    left: 76%;
+    top: 52.4%;
+    left: 79.8%;
 }
 
 @keyframes pulse {
@@ -1226,10 +1084,7 @@ body {
         font-size: 2rem;
     }
     
-    .about .section-title {
-        padding: 20px 30px;
-        font-size: 2rem;
-    }
+    /* Removed mobile-specific About title overrides to use default .section-title */
     
     .hero-main {
         font-size: 2.5rem;
@@ -1318,10 +1173,7 @@ body {
         font-size: 1rem;
     }
     
-    .about .section-title {
-        padding: 15px 20px;
-        font-size: 1.8rem;
-    }
+    /* Removed extra small breakpoint overrides for About title */
     
     .product-specs {
         grid-template-columns: 1fr;

@@ -1,7 +1,7 @@
 // Feagine 擎羽 Website - Main JavaScript
 // 全局变量
 let currentLanguage = 'en';
-let swiper = null;
+// Swiper removed with Products section
 
 // DOM 加载完成后初始化
 document.addEventListener('DOMContentLoaded', function() {
@@ -12,13 +12,14 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeWebsite() {
     initializeLanguage();
     initializeNavigation();
-    initializeSwiper();
+    // Swiper removed
     initializeAOS();
     initializeLazyLoading();
     initializeContactForm();
     initializeTechSpecs();
     initializeCookieConsent();
     initializeScrollEffects();
+    ensureHeroVideoLoop();
 }
 
 // 语言切换功能
@@ -143,43 +144,7 @@ function initializeNavigation() {
 }
 
 // 初始化 Swiper 轮播
-function initializeSwiper() {
-    const swiperContainer = document.querySelector('.swiper');
-    // 若外部CDN未能加载，避免抛错阻断后续初始化
-    if (!swiperContainer || typeof Swiper === 'undefined') {
-        if (swiperContainer) {
-            console.warn('Swiper not available. Skipping carousel init.');
-        }
-        return;
-    }
-    if (swiperContainer) {
-        swiper = new Swiper('.swiper', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                }
-            }
-        });
-    }
-}
+// initializeSwiper removed
 
 // 初始化 AOS 动画
 function initializeAOS() {
@@ -541,17 +506,7 @@ window.addEventListener('error', function(e) {
 
 // 页面可见性 API - 优化性能
 document.addEventListener('visibilitychange', function() {
-    if (document.hidden) {
-        // 页面不可见时暂停动画等
-        if (swiper && swiper.autoplay) {
-            swiper.autoplay.stop();
-        }
-    } else {
-        // 页面可见时恢复动画
-        if (swiper && swiper.autoplay) {
-            swiper.autoplay.start();
-        }
-    }
+    // Swiper removed: no autoplay control needed
 });
 
 // 导出主要函数（如果需要在其他地方使用）
@@ -560,3 +515,25 @@ window.Feagine = {
     showNotification,
     currentLanguage: () => currentLanguage
 };
+// 英雄区视频循环回退：在部分浏览器中，loop属性可能因缓冲/可见性策略未触发
+function ensureHeroVideoLoop() {
+    const hv = document.getElementById('hero-video');
+    if (!hv) return;
+    // 确保在可播放后绑定事件
+    hv.addEventListener('ended', () => {
+        try {
+            hv.currentTime = 0;
+            hv.play().catch(() => {});
+        } catch (e) {
+            console.warn('Hero video restart failed:', e);
+        }
+    });
+    // 进入视口时尝试播放（移动端可能需要交互，但muted允许自动播放）
+    const tryPlay = () => {
+        if (hv.paused) {
+            hv.play().catch(() => {});
+        }
+    };
+    document.addEventListener('visibilitychange', tryPlay, { passive: true });
+    window.addEventListener('focus', tryPlay, { passive: true });
+}
