@@ -397,6 +397,7 @@ body {
     margin-bottom: 1rem;
     line-height: 1.2;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9), 0 0 15px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
 }
 
 .hero-subtitle {
@@ -423,7 +424,7 @@ body {
 
 /* 仅将“有何可为”区域下移一些 */
 #what-can-do.about {
-    padding-top: 280px;
+    padding-top: 340px;
 }
 
 /* 提升三个关键标题（有何可为/为何有为/何以为之）的文字可读性光效 */
@@ -1088,6 +1089,7 @@ body {
     
     .hero-main {
         font-size: 2.5rem;
+        white-space: normal;
     }
     
     .hero-subtitle {
@@ -1167,6 +1169,7 @@ body {
     
     .hero-main {
         font-size: 2rem;
+        white-space: normal;
     }
     
     .hero-subtitle {
