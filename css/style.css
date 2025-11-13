@@ -64,6 +64,7 @@ body {
     margin-bottom: 3rem;
     color: var(--carbon-grey);
     position: relative;
+    overflow: visible;
 }
 
 .section-title::after {
@@ -76,6 +77,93 @@ body {
     height: 3px;
     background: linear-gradient(90deg, var(--primary-blue), var(--medium-grey));
     border-radius: 2px;
+}
+
+#what .section-title,
+#why .section-title,
+#how .section-title {
+    text-align: left;
+}
+
+#what .section-title::after,
+#why .section-title::after,
+#how .section-title::after {
+    left: 0;
+    transform: none;
+}
+
+/* Remove underline for About section titles */
+#what .section-title::after,
+#why .section-title::after,
+#how .section-title::after {
+    content: none;
+    display: none;
+}
+
+#what .section-title.glow-title,
+#why .section-title.glow-title,
+#how .section-title.glow-title {
+    text-shadow: none;
+}
+
+#what .section-title.glow-title::before,
+#why .section-title.glow-title::before,
+#how .section-title.glow-title::before {
+    display: none;
+}
+
+#what .section-title.glow-title::after,
+#why .section-title.glow-title::after,
+#how .section-title.glow-title::after {
+    box-shadow: none;
+}
+
+.section-title .section-desc {
+    position: absolute;
+    right: 0;
+    bottom: -20px;
+    font-size: 1.2rem;
+    color: var(--text-grey);
+    text-align: right;
+}
+
+.section-title .i18n {
+    display: inline-block;
+    vertical-align: baseline;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+html[lang="cn"] .section-title .i18n {
+    max-width: calc(100% - 1.2em);
+    overflow: hidden;
+}
+
+.section-title .cn-tail {
+    display: inline-block;
+    margin-left: 0.05em;
+    background: linear-gradient(90deg, #4da3ff, #0b61ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    vertical-align: baseline;
+    line-height: 1;
+    position: relative;
+    top: -0.25em;
+    white-space: nowrap;
+}
+
+html[lang="en"] .section-title .cn-tail {
+    display: none;
+}
+
+html[lang="en"] .section-title .i18n {
+    background: linear-gradient(90deg, #4da3ff, #0b61ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1.2;
+    -webkit-text-fill-color: transparent;
 }
 
 /* Buttons */
@@ -422,9 +510,9 @@ body {
     background: var(--light-grey);
 }
 
-/* 仅将“有何可为”区域下移一些 */
-#what-can-do.about {
-    padding-top: 340px;
+/* 仅将“大有可为”区域下移一些 */
+#what.about {
+    padding-top: 675px;
 }
 
 /* 提升三个关键标题（有何可为/为何有为/何以为之）的文字可读性光效 */
@@ -479,7 +567,7 @@ body {
 
 .about-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 40px;
     margin-top: 2rem;
 }
@@ -487,7 +575,7 @@ body {
 .about-card {
     background: var(--pure-white);
     padding: 40px 30px;
-    border-radius: 12px;
+    border-radius: 24px;
     text-align: center;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     transition: var(--transition-smooth);
@@ -524,8 +612,9 @@ body {
 
 /* Video cards in About section */
 .about-grid .video-card {
-    background: var(--pure-white);
-    border-radius: 12px;
+    position: relative;
+    background: transparent;
+    border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     transition: var(--transition-smooth);
@@ -537,18 +626,48 @@ body {
 }
 
 .about-grid .video-card h3 {
-    padding: 20px 20px 10px;
-    font-size: 1.3rem;
+    position: absolute;
+    left: 16px;
+    bottom: 56px;
+    z-index: 2;
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem;
     font-weight: 600;
-    color: var(--carbon-grey);
-    margin-bottom: 10px;
+    color: var(--pure-white);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+    pointer-events: none;
 }
 
 .about-grid .video-card p {
-    padding: 0 20px 20px;
-    color: var(--text-grey);
-    line-height: 1.5;
-    margin-bottom: 0;
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    z-index: 2;
+    padding: 0;
+    margin: 0;
+    color: var(--pure-white);
+    line-height: 1.4;
+    font-size: 1rem;
+    opacity: 0.95;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+}
+
+.about-grid .video-wrapper {
+    height: 320px;
+}
+
+.about-grid .video-card::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 45%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.0) 0%, rgba(18,24,38,0.65) 90%);
+    z-index: 1;
+    pointer-events: none;
 }
 
 /* Products Section: removed */
@@ -1084,6 +1203,14 @@ body {
     .section-title {
         font-size: 2rem;
     }
+
+    .section-title .section-desc {
+        position: static;
+        display: block;
+        margin-top: 8px;
+        text-align: right;
+        font-size: 0.9rem;
+    }
     
     /* Removed mobile-specific About title overrides to use default .section-title */
     
@@ -1249,4 +1376,16 @@ a:focus {
     .hero-content {
         color: var(--carbon-grey);
     }
+}
+
+/* Hide native volume/mute controls on WebKit browsers */
+video::-webkit-media-controls-volume-slider,
+video::-webkit-media-controls-mute-button,
+video::-webkit-media-controls-volume-control-container,
+video::-webkit-media-controls-volume-control {
+    display: none !important;
+}
+
+video::-webkit-media-controls-enclosure {
+    overflow: hidden !important;
 }

@@ -20,6 +20,7 @@ function initializeWebsite() {
     initializeCookieConsent();
     initializeScrollEffects();
     ensureHeroVideoLoop();
+    initializeVideoMute();
 }
 
 // 语言切换功能
@@ -536,4 +537,23 @@ function ensureHeroVideoLoop() {
     };
     document.addEventListener('visibilitychange', tryPlay, { passive: true });
     window.addEventListener('focus', tryPlay, { passive: true });
+}
+
+function initializeVideoMute() {
+    const videos = document.querySelectorAll('video');
+    videos.forEach(v => {
+        v.muted = true;
+        v.defaultMuted = true;
+        v.volume = 0;
+        v.addEventListener('volumechange', () => {
+            if (!v.muted || v.volume > 0) {
+                v.muted = true;
+                v.volume = 0;
+            }
+        }, { passive: true });
+        v.addEventListener('play', () => {
+            v.muted = true;
+            v.volume = 0;
+        }, { passive: true });
+    });
 }
