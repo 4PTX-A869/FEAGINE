@@ -142,14 +142,11 @@ html[lang="cn"] .section-title .i18n {
 .section-title .cn-tail {
     display: inline-block;
     margin-left: 0.05em;
-    background: linear-gradient(90deg, #4da3ff, #0b61ff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: #0b61ff;
     vertical-align: baseline;
     line-height: 1;
     position: relative;
-    top: -0.25em;
+    top: -0.24em;
     white-space: nowrap;
 }
 
@@ -158,12 +155,25 @@ html[lang="en"] .section-title .cn-tail {
 }
 
 html[lang="en"] .section-title .i18n {
-    background: linear-gradient(90deg, #4da3ff, #0b61ff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--carbon-grey);
     line-height: 1.2;
-    -webkit-text-fill-color: transparent;
+}
+
+@supports (-webkit-background-clip: text) {
+    html[lang="en"] .section-title .i18n {
+        background: linear-gradient(90deg, #4da3ff, #0b61ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+    }
+    html[lang="cn"] .section-title .cn-tail {
+        background: linear-gradient(90deg, #4da3ff, #0b61ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+    }
 }
 
 /* Buttons */
