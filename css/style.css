@@ -125,6 +125,10 @@ body {
     font-size: 1.2rem;
     color: var(--text-grey);
     text-align: right;
+    max-width: 50%;
+    width: auto;
+    white-space: normal;
+    line-height: 1.4;
 }
 
 .section-title .i18n {
@@ -522,7 +526,35 @@ html[lang="en"] .section-title .i18n {
 
 /* 仅将“大有可为”区域下移一些 */
 #what.about {
-    padding-top: 675px;
+    padding-top: 850px;
+}
+
+/* 将所有About板块整体下移200px */
+#what.about,
+#why.about,
+#how.about {
+    margin-top: 0px;
+}
+
+/* 将section-desc也下移200px以保持一致 */
+#what .section-title .section-desc,
+#why .section-title .section-desc,
+#how .section-title .section-desc {
+    bottom: -120px; /* 原位置-20px + 200px下移 */
+}
+
+/* 将卡片网格也下移200px以保持一致 */
+#what .about-grid,
+#why .about-grid,
+#how .about-grid {
+    margin-top: calc(2rem + 160px); /* 原2rem + 200px下移 */
+}
+
+/* 将section标题也下移200px以保持一致 */
+#what .section-title,
+#why .section-title,
+#how .section-title {
+    margin-bottom: calc(3rem + 160px); /* 原3rem + 200px下移 */
 }
 
 /* 提升三个关键标题（有何可为/为何有为/何以为之）的文字可读性光效 */
@@ -584,16 +616,31 @@ html[lang="en"] .section-title .i18n {
 
 .about-card {
     background: var(--pure-white);
-    padding: 40px 30px;
+    padding: 0;
     border-radius: 24px;
     text-align: center;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+    height: 320px;
 }
 
 .about-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.about-card::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 45%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.0) 0%, rgba(18,24,38,0.65) 90%);
+    z-index: 1;
+    pointer-events: none;
 }
 
 .about-icon {
@@ -608,11 +655,32 @@ html[lang="en"] .section-title .i18n {
     color: var(--pure-white);
 }
 
+.about-image-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
 .about-card h3 {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 15px;
-    color: var(--carbon-grey);
+    color: var(--pure-white);
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    z-index: 2;
+    padding: 0;
+    margin: 0;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+    pointer-events: none;
 }
 
 .about-card p {
@@ -638,7 +706,7 @@ html[lang="en"] .section-title .i18n {
 .about-grid .video-card h3 {
     position: absolute;
     left: 16px;
-    bottom: 56px;
+    bottom: 16px;
     z-index: 2;
     padding: 0;
     margin: 0;
@@ -1220,6 +1288,8 @@ html[lang="en"] .section-title .i18n {
         margin-top: 8px;
         text-align: right;
         font-size: 0.9rem;
+        max-width: 100%;
+        width: auto;
     }
     
     /* Removed mobile-specific About title overrides to use default .section-title */
